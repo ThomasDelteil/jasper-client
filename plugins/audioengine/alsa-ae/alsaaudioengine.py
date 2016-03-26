@@ -64,6 +64,14 @@ class AlsaAudioDevice(plugin.audioengine.AudioDevice):
     def __init__(self, name):
         super(AlsaAudioDevice, self).__init__(name)
         self._logger = logging.getLogger(__name__)
+        preslug_name = self.RE_PRESLUG.sub('', self.name)
+        if preslug_name.endswith(': - '):
+            preslug_name = self.name
+        self._alsa_slug = slugify.slugify(preslug_name)
+
+    @property
+    def slug(self):
+        return self._alsa_slug
 
     @property
     def types(self):
