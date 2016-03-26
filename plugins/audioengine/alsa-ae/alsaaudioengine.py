@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import contextlib
+import re
 import slugify
 import alsaaudio
 from jasper import plugin
