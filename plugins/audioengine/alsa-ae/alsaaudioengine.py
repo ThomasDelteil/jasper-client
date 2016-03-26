@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import contextlib
+import slugify
 import alsaaudio
 from jasper import plugin
 
@@ -61,6 +62,8 @@ class AlsaAudioEnginePlugin(plugin.AudioEnginePlugin):
 
 
 class AlsaAudioDevice(plugin.audioengine.AudioDevice):
+    RE_PRESLUG = re.compile(r'\(hw:\d,\d\)')
+
     def __init__(self, name):
         super(AlsaAudioDevice, self).__init__(name)
         self._logger = logging.getLogger(__name__)
